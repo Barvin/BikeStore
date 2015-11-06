@@ -4,6 +4,7 @@ staticfiles
 *.sqlite3
 datastore.ini
 useParser.py
+local_settings.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

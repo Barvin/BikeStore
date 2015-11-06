@@ -20,7 +20,12 @@ TEMPLATE_DIRS = (
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['secret_key']
+
+# Will be overwritten by deveopment settings
+try:
+    SECRET_KEY = os.environ['secret_key']
+except Exception as e:
+    pass
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -60,16 +65,20 @@ WSGI_APPLICATION = 'varnhems_cyklar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['db_name'],
-        'USER': os.environ['db_user'],
-        'PASSWORD': os.environ['db_password'],
-        'HOST': os.environ['db_host'],
-        'PORT': os.environ['db_port'],
+# Will be overwritten by deveopment settings
+try:
+    DATABASES = {
+        'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['db_name'],
+            'USER': os.environ['db_user'],
+            'PASSWORD': os.environ['db_password'],
+            'HOST': os.environ['db_host'],
+            'PORT': os.environ['db_port'],
+        }
     }
-}
+except Exception as e:
+    pass
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -111,3 +120,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Overwrite with development settings
+try:
+    from local_settings import *
+except ImportError as e:
+    pass
