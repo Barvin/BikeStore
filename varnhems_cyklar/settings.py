@@ -7,10 +7,6 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-from ConfigParser import SafeConfigParser
-
-parser = SafeConfigParser()
-parser.read('../datastore.ini')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -20,6 +16,12 @@ TEMPLATE_DIRS = (
                  os.path.join(BASE_DIR, 'templates/'),
                  )
 
+# import parser with absolute DIRs
+from ConfigParser import SafeConfigParser
+parser = SafeConfigParser()
+CURRENT_DIR = os.path.dirname(__file__)
+parser_path = os.path.join(CURRENT_DIR, 'datastore.ini')
+parser.read(parser_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
