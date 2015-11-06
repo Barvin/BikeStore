@@ -19,9 +19,7 @@ TEMPLATE_DIRS = (
 # import parser with absolute DIRs
 from ConfigParser import SafeConfigParser
 parser = SafeConfigParser()
-CURRENT_DIR = os.path.dirname(__file__)
-parser_path = os.path.join(CURRENT_DIR, 'datastore.ini')
-parser.read(parser_path)
+parser.read(os.path.join(os.path.dirname(__file__), r"datastore.ini"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
