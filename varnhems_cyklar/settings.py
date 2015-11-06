@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': parser.get('db', 'name', raw=True),
         'USER': parser.get('db', 'user', raw=True),
         'PASSWORD': parser.get('db', 'password', raw=True),
-        'HOST': parser.get('db', 'host', raw=True)
+        'HOST': parser.get('db', 'host', raw=True),
         'PORT': parser.get('db', 'port', raw=True),
     }
 }
