@@ -16,16 +16,11 @@ TEMPLATE_DIRS = (
                  os.path.join(BASE_DIR, 'templates/'),
                  )
 
-# import parser with absolute DIRs
-from ConfigParser import SafeConfigParser
-parser = SafeConfigParser()
-parser.read(os.path.join(os.path.dirname(__file__), r"datastore.ini"))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = parser.get('keys', 'secret_key', raw=True)
+SECRET_KEY = os.environ['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -68,11 +63,11 @@ WSGI_APPLICATION = 'varnhems_cyklar.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': parser.get('db', 'name', raw=True),
-        'USER': parser.get('db', 'user', raw=True),
-        'PASSWORD': parser.get('db', 'password', raw=True),
-        'HOST': parser.get('db', 'host', raw=True),
-        'PORT': parser.get('db', 'port', raw=True),
+        'NAME': os.environ['db_name'],
+        'USER': os.environ['db_user'],
+        'PASSWORD': os.environ['db_password'],
+        'HOST': os.environ['db_host'],
+        'PORT': os.environ['db_port'],
     }
 }
 
