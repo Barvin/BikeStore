@@ -6,5 +6,10 @@
 </head>
 <body>
 <h1>Here are all products</h1>
+<ul>
+    {% for product in results %}
+        <li><a href="./{{product.pk}}">{{product.name}}</a></li>
+    {% endfor %}
+</ul>
 </body>
 </html>

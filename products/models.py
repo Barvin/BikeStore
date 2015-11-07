@@ -8,5 +8,5 @@ class Product(models.Model):
     image = models.CharField(max_length=500, null=True, blank=True)
     description = models.TextField(max_length=5000, null=True, blank=True)
     price = models.FloatField(max_length=10, null=False, default=0)
-    sold = models.NullBooleanField(null=True, blank=True)
-    delete = models.NullBooleanField(null=True, blank=True)
+    sold = models.NullBooleanField(default=False, null=False, blank=False)
+    delete = models.NullBooleanField(default=False, null=False, blank=False)
